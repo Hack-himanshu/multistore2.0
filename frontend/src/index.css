@@ -1,0 +1,87 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+    :root {
+        --font-sans: 'Inter', system-ui, sans-serif;
+    }
+    * {
+        @apply border-gray-200;
+    }
+    html {
+        scroll-behavior: smooth;
+    }
+    body {
+        @apply bg-[radial-gradient(circle_at_top_left,_rgba(99,102,241,0.08),_transparent_30%),linear-gradient(135deg,_#f8fafc_0%,_#fdf2f8_100%)] text-gray-900 antialiased;
+        font-family: var(--font-sans);
+    }
+    ::selection {
+        @apply bg-indigo-600/20 text-indigo-950;
+    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+        width: 7px;
+        height: 7px;
+    }
+    ::-webkit-scrollbar-track {
+        @apply bg-gray-100;
+    }
+    ::-webkit-scrollbar-thumb {
+        @apply bg-gray-300 rounded-full;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+        @apply bg-gray-400;
+    }
+}
+
+@layer components {
+    /* Glass Card */
+    .glass {
+        @apply bg-white/70 backdrop-blur-xl border border-white/40 shadow-xl;
+    }
+    .glass-dark {
+        @apply bg-gray-900/70 backdrop-blur-xl border border-gray-700/40 shadow-xl;
+    }
+    /* Premium Card */
+    .card {
+        @apply bg-white rounded-2xl border border-gray-200/80 shadow-[0_10px_30px_rgba(15,23,42,0.06)];
+    }
+    .panel {
+        @apply rounded-3xl border border-gray-200/70 bg-white/80 backdrop-blur-xl shadow-[0_20px_60px_rgba(15,23,42,0.06)];
+    }
+    .soft-ring {
+        @apply ring-1 ring-black/5;
+    }
+    /* Gradient Text */
+    .gradient-text {
+        @apply bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent;
+    }
+    /* Gradient Button */
+    .btn-gradient {
+        @apply bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white font-semibold rounded-xl px-6 py-3 transition-all duration-200 shadow-lg shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:-translate-y-0.5 active:translate-y-0;
+    }
+    /* Outline Button */
+    .btn-outline {
+        @apply border border-gray-300 text-gray-700 hover:border-gray-400 hover:bg-gray-50 font-medium rounded-xl px-6 py-3 transition-colors duration-150;
+    }
+    /* Input Field */
+    .input-field {
+        @apply w-full px-4 py-3 rounded-xl border border-gray-200 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-900/10 focus:border-gray-400 transition-all duration-200 text-sm;
+    }
+    /* Ambient glow blob */
+    .blob {
+        @apply absolute rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-blob;
+    }
+}
+
+@layer utilities {
+    .animation-delay-2000 {
+        animation-delay: 2s;
+    }
+    .animation-delay-4000 {
+        animation-delay: 4s;
+    }
+    .text-balance {
+        text-wrap: balance;
+    }
+}
