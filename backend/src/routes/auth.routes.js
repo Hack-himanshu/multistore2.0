@@ -9,6 +9,8 @@ const {
   updateProfile,
   changePassword,
   registerCustomer,
+  forgotPassword,
+  resetPassword,
 } = require('../controllers/auth.controller');
 const { protect } = require('../middleware/auth');
 const { handleValidationErrors } = require('../middleware/errorHandler');
@@ -28,10 +30,22 @@ const loginValidation = [
   handleValidationErrors,
 ];
 
+const forgotPasswordValidation = [
+  body('email').isEmail().normalizeEmail().withMessage('Valid email required'),
+  handleValidationErrors,
+];
+
+const resetPasswordValidation = [
+  body('password').isLength({ min: 8 }).withMessage('Password must be at least 8 characters'),
+  handleValidationErrors,
+];
+
 // ─── Routes ───────────────────────────────────────────────────────────────────
 router.post('/register', registerValidation, register);
 router.post('/register-customer', registerValidation, registerCustomer);
 router.post('/login', loginValidation, login);
+router.post('/forgot-password', forgotPasswordValidation, forgotPassword);
+router.post('/reset-password/:token', resetPasswordValidation, resetPassword);
 
 // Protected routes
 router.get('/me', protect, getMe);

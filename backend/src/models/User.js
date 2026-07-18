@@ -57,6 +57,18 @@ const userSchema = new mongoose.Schema(
       type: Date,
       select: false,
     },
+    // ── Password reset ──────────────────────────────────────────────────────
+    // Only the SHA-256 hash of the reset token is ever stored — same principle
+    // as passwords: if the DB ever leaks, a stored hash is useless to an
+    // attacker, but a stored raw token would let them reset anyone's password.
+    passwordResetTokenHash: {
+      type: String,
+      select: false,
+    },
+    passwordResetExpires: {
+      type: Date,
+      select: false,
+    },
   },
   {
     timestamps: true,
